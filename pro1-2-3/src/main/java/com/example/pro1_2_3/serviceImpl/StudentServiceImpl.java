@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
@@ -39,7 +40,14 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student updateStudent(Long id, Student studentDetails) {
         Student student = getStudentById(id);
-        // update studentDetails to student object
+        // update student details
+        student.setName(studentDetails.getName());
+        student.setRoll(studentDetails.getRoll());
+        student.setSection(studentDetails.getSection());
+        student.setStudentClass(studentDetails.getStudentClass());
+        student.setEmail(studentDetails.getEmail());
+        student.setDateOfBirth(studentDetails.getDateOfBirth());
+        student.setSubjects(studentDetails.getSubjects());
         return studentRepository.save(student);
     }
 
@@ -48,4 +56,9 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteById(id);
     }
 
+    @Override
+    public List<Student> searchStudentsByName(String name) {
+        return studentRepository.findByNameContainingIgnoreCase(name);
+    }
 }
+

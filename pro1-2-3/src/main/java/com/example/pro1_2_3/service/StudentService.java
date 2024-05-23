@@ -8,5 +8,5 @@ public interface StudentService {
     Student addStudent(Student student);
     Student updateStudent(Long id, Student studentDetails);
     void deleteStudent(Long id);
-
+    List<Student> searchStudentsByName(String name);
 }

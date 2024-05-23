@@ -50,4 +50,10 @@ public class StudentController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Student>> searchStudentsByName(
+            @RequestParam String name) {
+        List<Student> students = studentService.searchStudentsByName(name);
+        return ResponseEntity.ok(students);
+    }
 }
